@@ -2,7 +2,7 @@
 /**
  * MultiVideos
  * 
- * Äîáàâëåíèå âèäåî-ãàëåðåè ê ñòðàíèöå
+ * Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð²Ð¸Ð´ÐµÐ¾-Ð³Ð°Ð»ÐµÑ€ÐµÐ¸ Ðº ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ðµ
  *
  * @category 	plugin
  * @version 	1.0
@@ -28,10 +28,10 @@ $thumbUrl = isset($thumbUrl) ? $thumbUrl : 'assets/images/';
 $site_url = $modx->config['site_url'];
 if (($templ && !in_array($cur_templ,$templ)) || ($role && !in_array($cur_role,$role))) return;
 
-$lang['insert']='Âñòàâèòü';
-$lang['link']='Ïðåâüþ:';
-$lang['title']='Íàçâàíèå:';
-$lang['video']='Ññûëêà YouTube, Vimeo, Rutube';
+$lang['insert']='Ð’ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ';
+$lang['link']='ÐŸÑ€ÐµÐ²ÑŒÑŽ:';
+$lang['title']='ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ:';
+$lang['video']='Ð¡ÑÑ‹Ð»ÐºÐ° YouTube, Vimeo, Rutube';
 
 $e = &$modx->Event;
 if ($e->name == 'OnDocFormRender') {
