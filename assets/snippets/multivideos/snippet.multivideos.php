@@ -2,7 +2,7 @@
 if(!defined('MODX_BASE_PATH')){die('What are you doing? Get out of here!');}
 $tvname = isset($tvname) ? $tvname : 'video';
 $outerTpl = isset($outerTpl) ? $modx->getChunk($outerTpl) : '<div class="thumbs">[+videos+]</div>';
-$rowTpl = isset($rowTpl) ? $modx->getChunk($rowTpl) : '<a href="[+video+]" id="thumb_[+num+]"><img src="[+thumb+]" alt="" title="[+title+]" /></a>';
+$rowTpl = isset($rowTpl) ? $modx->getChunk($rowTpl) : '<a href="[+embed+]" id="thumb_[+num+]"><img src="[+thumb+]" alt="" title="[+title+]" /></a>';
 $fid = isset($fid) ? $fid : false;
 $limit = isset ($limit) ? $limit : 0;
 
@@ -18,10 +18,13 @@ if (!$tvv || $tvv=='[]') return;
 $fotoArr=json_decode($tvv);
 $fotoRes=array();
 $num=1;
+if (!class_exists('videoThumb')) include_once(MODX_BASE_PATH.'assets/snippets/multivideos/videothumb.class.php');
+$video = new videoThumb();
 foreach ($fotoArr as $v) {
 	if ($limit == $num) break;
-	$fields = array ('[+video+]','[+thumb+]','[+title+]','[+num+]');
-	$values = array ($v[0],$v[1],$v[2],$num);
+	$embed = $video->process($v[0],false);
+	$fields = array ('[+video+]','[+thumb+]','[+title+]','[+embed+]','[+num+]');
+	$values = array ($v[0],$v[1],$v[2],$embed['video'],$num);
 	$fotoRes[$num] = str_replace($fields, $values, $rowTpl);
 	$num++;
 }

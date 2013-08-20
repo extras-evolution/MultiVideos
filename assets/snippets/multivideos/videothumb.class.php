@@ -9,6 +9,7 @@ class videoThumb {
 			'imagesPath' => dirname(__FILE__) . '/images/'
 			,'imagesUrl' => '/images/'
 			,'emptyImage' => '/images/_empty.png'
+			,'forceDownload' => false
 		),$config);
 
 		if (!is_dir($this->config['imagesPath'])) {
@@ -83,16 +84,19 @@ class videoThumb {
 		if (empty($url)) {return $this->config['emptyImage'];}
 
 		$image = '';
-		$response = $this->Curl($url);
-		if (!empty($response)) {
-			$tmp = explode('.', $url);
-			$ext = '.' . end($tmp);
-
-			$filename = md5($url) . $ext;
-			if (file_put_contents($this->config['imagesPath'] . $filename, $response)) {
-				$image = $this->config['imagesUrl'] . $filename;
-			}
-
+		$tmp = explode('.', $url);
+		$ext = '.' . end($tmp);
+		$filename = md5($url) . $ext;
+		if (!$this->config['forceDownload'] && file_exists($this->config['imagesPath'] . $filename)) {
+			$image = $this->config['imagesUrl'] . $filename;
+			} 
+		else {
+			$response = $this->Curl($url);
+				if (!empty($response)) {
+					if (file_put_contents($this->config['imagesPath'] . $filename, $response)) {
+					$image = $this->config['imagesUrl'] . $filename;
+					}
+				}
 		}
 		if (empty($image)) {$image = $this->config['emptyImage'];}
 
@@ -106,7 +110,7 @@ class videoThumb {
 	 * */
 	function Curl($url = '') {
 		if (empty($url)) {return false;}
-
+		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
