@@ -6,7 +6,7 @@ Install package from repository and activate plugin after installation.
 MultiVideos Plugin
 
 This plugin is upgraded MultiPhotos. User can insert link to video (youtube, rutube, vimeo), thumbnail image and video title; besides, if thumbnail field is empty, then thumbnail image will be downloaded from video hosting to special folder after saving resource. All data is stored as json in single TV.
-The plugin uses link parser class by Bezumkin.
+Class by Bezumkin is used to parse links and download thumbnails http://bezumkin.ru/sections/php/441/.
 
 Plugin options
 
