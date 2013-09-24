@@ -7,7 +7,7 @@ $emptyImage = isset($emptyImage) ? $emptyImage : 'assets/snippets/phpthumb/noima
 $action = isset($action) ? $action : 'embed';
 $forceDownload = isset($forceDownload) ? $forceDownload : 'false';
 
-if (!class_exists('videoThumb'))include_once(MODX_BASE_PATH.'assets/plugins/multi/videothumb.class.php');
+if (!class_exists('videoThumb'))include_once(MODX_BASE_PATH.'assets/snippets/multivideos/videothumb.class.php');
 $video = new videoThumb(array(
 	'imagesPath' => MODX_BASE_PATH . '/' . $thumbsUrl
 	,'imagesUrl' => $thumbsUrl
