@@ -17,7 +17,7 @@ if (isset($id)) {
 }
 if (!$tvv || $tvv=='[]') return;
 $fotoArr=json_decode($tvv);
-if ($reverse) array_reverse($fotoArr);
+if ($reverse) $fotoArr = array_reverse($fotoArr);
 $fotoRes=array();
 $num=1;
 if (!class_exists('videoThumb')) include_once(MODX_BASE_PATH.'assets/snippets/multivideos/videothumb.class.php');
